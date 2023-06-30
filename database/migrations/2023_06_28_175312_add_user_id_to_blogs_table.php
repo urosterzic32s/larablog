@@ -15,6 +15,8 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+             
         });
     }
 
@@ -24,6 +26,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('blogs', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
         });
     }

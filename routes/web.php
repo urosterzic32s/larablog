@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,4 @@ Route::get('/admin/blogs', [AdminController::class, 'blogs'])->name('admin.blogs
 
 // Categories
 Route::resource('categories', CategoryController::class);
+Route::resource('users', UserController::class);
