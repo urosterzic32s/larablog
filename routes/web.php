@@ -37,8 +37,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Admin routes
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 Route::get('/admin/blogs', [AdminController::class, 'blogs'])->name('admin.blogs');
+
 
 
 // Categories
