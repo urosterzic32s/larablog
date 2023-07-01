@@ -12,6 +12,9 @@
     <div class="col-md-12">
         <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            
+            @include('partials.error-message')
+
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" name="title" class="form-control">

@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 
 class BlogsController extends Controller
 {
@@ -31,6 +32,14 @@ class BlogsController extends Controller
 
     public function store(Request $request)
     {
+        // validate
+        $rules = [
+            'title' => ['required', 'min:2', 'max:160'],
+            'body' => ['required', 'min:2'],
+        ];
+
+        $this->validate($request, $rules);
+        
         $input = $request->all();
 
         // meta stuff
@@ -54,6 +63,8 @@ class BlogsController extends Controller
         {
             $blogByUser->category()->sync($request->category_id);
         }
+
+        Session::flash('blog_created_message', 'Congratulations on creating a great blog!');
         
         return redirect('/blogs');
     }
