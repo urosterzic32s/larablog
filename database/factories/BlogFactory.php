@@ -19,6 +19,7 @@ class BlogFactory extends Factory
         return [
             'title' => fake()->sentence(10),
             'body'  => fake()->sentence(100),
+            'slug' => fake()->sentence(4),
         ];
     }
 }

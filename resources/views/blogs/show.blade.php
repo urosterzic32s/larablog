@@ -38,7 +38,7 @@
             <div class="col-md-12">
                 {!! $blog->body !!}
                 @if ($blog->user)
-                Author: <a href="{{ route('users.show', $blog->user) }}">{{ $blog->user->name }}</a> | Posted: {{ $blog->created_at->diffForHumans() }}
+                Author: <a href="{{ route('users.show', $blog->user->name) }}">{{ $blog->user->name }}</a> | Posted: {{ $blog->created_at->diffForHumans() }}
                 @endif
                 <hr>
                 <strong>Categories:</strong>
