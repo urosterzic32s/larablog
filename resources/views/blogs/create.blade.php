@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="body">Title</label>
-                <textarea id="mytextarea" name="body" class="form-control"></textarea>
+                <textarea id="mytextarea" name="body" class="form-control my-editor"></textarea>
             </div>
 
             <div class="form-group from-check form-check-inline">
@@ -32,8 +32,10 @@
             </div>
 
             <div class="form-group">
-                <label for="featured_image">Featured Image</label>
-                <input type="file" name="featured_image" class="form-control">
+                <label class="btn btn-default">
+                    <span class="btn btn-outline btn-sm btn-info">Featured Image</span>
+                    <input type="file" name="featured_image" class="form-control" hidden>
+                </label>
             </div>
 
             <div>

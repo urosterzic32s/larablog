@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('partials.tinymce')
 
 <div class="container-fluid">
     <div class="jumbotron">
@@ -8,7 +9,7 @@
     </div>
 
     <div class="col-md-12">
-        <form action="{{ route('blogs.update', ['id' => $blog->id]) }}" method="POST">
+        <form action="{{ route('blogs.update', ['id' => $blog->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             
@@ -18,7 +19,8 @@
             </div>
             <div class="form-group">
                 <label for="body">Title</label>
-                <textarea name="body" class="form-control">{{ $blog->body }}</textarea>
+                {{-- <textarea name="body" class="form-control">{{ $blog->body }}</textarea> --}}
+                <textarea id="mytextarea" name="body" class="form-control my-editor">{{ $blog->title }}</textarea>
             </div>
 
             <div class="form-group from-check form-check-inline">
@@ -35,6 +37,13 @@
                     <input type="checkbox" value="{{ $category->id }}" name="category_id[]" class="form-check-input">
                     <label class="form-check-label btn-margin-right">{{ $category->name }}</label>
                 @endforeach
+            </div>
+
+            <div class="form-group">
+                <label class="btn btn-default">
+                    <span class="btn btn-outline btn-sm btn-info">Featured Image</span>
+                    <input type="file" name="featured_image" class="form-control" hidden>
+                </label>
             </div>
 
             <div>

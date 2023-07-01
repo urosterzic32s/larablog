@@ -52,6 +52,7 @@ class BlogsController extends Controller
         if ($file = $request->file('featured_image'))
         {
             $name = uniqid() . $file->getClientOriginalName();
+            $name = strtolower(str_replace(' ', '-', $name));
             $file->move('images/featured_image/', $name);
             $input['featured_image'] = $name;
         }
@@ -96,6 +97,20 @@ class BlogsController extends Controller
     {
         $input = $request->all();
         $blog = Blog::FindOrFail($id);
+
+        if ($file = $request->file('featured_image'))
+        {
+            if ($blog->featured_image)
+            {
+                unlink('images/featured_image/' . $blog->featured_image);
+            }
+
+            $name = uniqid() . $file->getClientOriginalName();
+            $name = strtolower(str_replace(' ', '-', $name));
+            $file->move('images/featured_image/', $name);
+            $input['featured_image'] = $name;
+        }
+
         $blog->update($input);
         // sync with cateogries
         if ($request->category_id)
