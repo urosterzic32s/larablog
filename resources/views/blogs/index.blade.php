@@ -15,12 +15,21 @@
 @endif
 
     @foreach ($blogs as $blog)
-    <h2><a href="{{ route('blogs.show', [$blog->slug]) }}">{{ $blog->title }}</a></h2>
-    {!! $blog->body !!}
-    
-    @if ($blog->user)
-    Author: <a href="{{ route("users.show", $blog->user->name) }}">{{ $blog->user->name }}</a> | Posted: {{ $blog->created_at->diffForHumans() }}
-    @endif
+    <div class="col-md-8 offset-md-2 text-center">
+        <h2><a href="{{ route('blogs.show', [$blog->slug]) }}">{{ $blog->title }}</a></h2>
+
+        <div class="col-sm-12">
+            @if($blog->featured_image) 
+                <img src="/larablog/public/images/featured_image/{{ $blog->featured_image ?? '' }}" class="img-responsive featured_image" style="width:300px;height:auto;">
+            @endif
+        </div>
+
+        <div class="lead">{!! Str::limit($blog->body, 200, '...') !!}</div>
+        
+        @if ($blog->user)
+        Author: <a href="{{ route("users.show", $blog->user->name) }}">{{ $blog->user->name }}</a> | Posted: {{ $blog->created_at->diffForHumans() }}
+        @endif
+    </div>
     <hr>
     @endforeach
 </div>
